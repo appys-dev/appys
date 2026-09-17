@@ -2,156 +2,1975 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="1인 앱 개발회사 appys. Android Native와 Supabase 기반으로 기획부터 개발·운영까지 책임집니다." />
-  <meta name="google-site-verification" content="T5gVXfpSbI6TBhPbc2ESHRZ_AAQpCev3litzBhxbnOk" />
-  <title>appys</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="appys는 소규모 기업의 업무 환경에 최적화된 B2B 소프트웨어를 개발합니다. AI 기술과 빠른 개발 방식을 활용해 반복적인 업무를 효율화하고 시간과 비용을 절약할 수 있는 시스템을 제공합니다."
+  />
+
+  <meta
+    name="google-site-verification"
+    content="T5gVXfpSbI6TBhPbc2ESHRZ_AAQpCev3litzBhxbnOk"
+  />
+
+  <title>appys | B2B Software for Small Business</title>
 
   <style>
-    :root{
-      --bg:#0b0f17;
-      --panel:rgba(255,255,255,.05);
-      --line:rgba(255,255,255,.12);
-      --text:#e9eefb;
-      --muted:#a7b3d0;
-      --accent:#E6BC47;
-      --r:18px;
+    :root {
+      --bg: #070a10;
+      --bg-soft: #0c111b;
+      --panel: rgba(255, 255, 255, 0.045);
+      --panel-hover: rgba(255, 255, 255, 0.065);
+      --line: rgba(255, 255, 255, 0.10);
+      --line-strong: rgba(255, 255, 255, 0.16);
+      --text: #f5f7fb;
+      --muted: #9da9bf;
+      --muted-2: #6f7b91;
+      --accent: #e8bd4d;
+      --accent-soft: rgba(232, 189, 77, 0.10);
+      --accent-line: rgba(232, 189, 77, 0.28);
+      --blue: #70a7ff;
+      --max: 1120px;
+      --radius: 22px;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-                   "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
-      color:var(--text);
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
       background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(230,188,71,.22), transparent 55%),
-        radial-gradient(900px 500px at 100% 0%, rgba(100,180,255,.16), transparent 55%),
+        radial-gradient(
+          900px 560px at 8% -5%,
+          rgba(232, 189, 77, 0.12),
+          transparent 65%
+        ),
+        radial-gradient(
+          900px 600px at 100% 0%,
+          rgba(80, 135, 255, 0.10),
+          transparent 62%
+        ),
         var(--bg);
-    }
-    a{color:inherit}
-    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 48px}
-    .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
-    .logo{
-      width:36px;height:36px;border-radius:12px;
-      background:linear-gradient(135deg, rgba(230,188,71,.95), rgba(230,188,71,.35));
-      box-shadow:0 10px 30px rgba(230,188,71,.18);
+
+      color: var(--text);
+
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans KR",
+        "Apple SD Gothic Neo",
+        "Malgun Gothic",
+        Arial,
+        sans-serif;
+
+      line-height: 1.6;
     }
 
-    .panel{
-      margin-top:16px;
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius:22px;
-      padding:26px 20px;
-      box-shadow:0 18px 50px rgba(0,0,0,.35);
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        );
+
+      background-size: 64px 64px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 78%
+        );
     }
 
-    .badge{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:7px 11px;border-radius:999px;
-      border:1px solid rgba(230,188,71,.45);
-      background:rgba(230,188,71,.10);
-      font-size:13px;
-    }
-    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
-    h1{margin:14px 0 10px;font-size:40px;line-height:1.12;letter-spacing:-.5px}
-
-    .lead{
-      margin:0;color:var(--muted);
-      font-size:16.5px;line-height:1.85;
-      max-width:60ch;white-space:pre-line;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding:11px 14px;border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      text-decoration:none;font-weight:650;
-    }
-    .btn.primary{
-      border-color:rgba(230,188,71,.55);
-      background:rgba(230,188,71,.12);
-    }
-    .btn:hover{filter:brightness(1.08)}
-
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-    .box{
-      border:1px solid var(--line);
-      background:var(--panel);
-      border-radius:var(--r);
-      padding:14px 14px 12px;
-    }
-    .box h2{margin:0 0 6px;font-size:15px}
-    .box p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.7;white-space:pre-line}
-
-    footer{
-      margin-top:18px;
-      color:var(--muted);
-      font-size:13px;
-      padding:14px 4px 0;
-      border-top:1px solid var(--line);
+    .container {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
     }
 
-    @media (max-width:820px){
-      h1{font-size:34px}
-      .grid{grid-template-columns:1fr}
+    /* Header */
+
+    header {
+      height: 78px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f6d675,
+          #c99522
+        );
+
+      box-shadow:
+        0 8px 30px rgba(232, 189, 77, .18);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      top: 7px;
+      right: 7px;
+      border-radius: 4px;
+      background: rgba(7, 10, 16, .78);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: color .18s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-contact {
+      padding: 9px 14px;
+      color: var(--text) !important;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .025);
+    }
+
+    /* Hero */
+
+    .hero {
+      position: relative;
+      padding: 105px 0 110px;
+    }
+
+    .hero-inner {
+      max-width: 880px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 7px 12px;
+
+      border:
+        1px solid var(--accent-line);
+
+      border-radius: 999px;
+
+      background:
+        var(--accent-soft);
+
+      color: #eed17a;
+
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background:
+        var(--accent);
+
+      box-shadow:
+        0 0 14px rgba(232, 189, 77, .7);
+    }
+
+    h1 {
+      margin: 26px 0 24px;
+
+      max-width: 850px;
+
+      font-size:
+        clamp(44px, 6.5vw, 76px);
+
+      line-height: 1.08;
+      letter-spacing: -3.5px;
+      word-break: keep-all;
+    }
+
+    .hero-highlight {
+      background:
+        linear-gradient(
+          90deg,
+          #f1d277,
+          #fff0bd
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-desc {
+      max-width: 690px;
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 18px;
+      line-height: 1.9;
+
+      word-break: keep-all;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      min-height: 48px;
+      padding: 0 18px;
+
+      border-radius: 12px;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      transition:
+        transform .18s ease,
+        background .18s ease,
+        border-color .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #15120a;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f1cf68,
+          #d9a92e
+        );
+
+      box-shadow:
+        0 12px 32px rgba(232, 189, 77, .14);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .03);
+    }
+
+    /* Key values */
+
+    .value-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      margin-top: 75px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        var(--radius);
+
+      background:
+        rgba(255, 255, 255, .025);
+
+      overflow: hidden;
+    }
+
+    .value-item {
+      padding: 24px 26px;
+    }
+
+    .value-item + .value-item {
+      border-left:
+        1px solid var(--line);
+    }
+
+    .value-label {
+      margin-bottom: 7px;
+
+      color:
+        var(--accent);
+
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .value-title {
+      margin-bottom: 5px;
+
+      font-size: 16px;
+      font-weight: 750;
+    }
+
+    .value-desc {
+      color:
+        var(--muted-2);
+
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    /* Sections */
+
+    section {
+      padding:
+        105px 0;
+    }
+
+    .section-head {
+      max-width:
+        690px;
+
+      margin-bottom:
+        42px;
+    }
+
+    .section-kicker {
+      margin-bottom:
+        12px;
+
+      color:
+        var(--accent);
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        1.2px;
+
+      text-transform:
+        uppercase;
+    }
+
+    .section-title {
+      margin:
+        0 0 16px;
+
+      font-size:
+        clamp(31px, 4vw, 45px);
+
+      line-height:
+        1.18;
+
+      letter-spacing:
+        -1.7px;
+
+      word-break:
+        keep-all;
+    }
+
+    .section-description {
+      margin: 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        16px;
+
+      line-height:
+        1.85;
+
+      word-break:
+        keep-all;
+    }
+
+    /* Problem */
+
+    .problem-section {
+      border-top:
+        1px solid var(--line);
+    }
+
+    .problem-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        14px;
+    }
+
+    .card {
+      position:
+        relative;
+
+      min-height:
+        225px;
+
+      padding:
+        25px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        var(--radius);
+
+      background:
+        linear-gradient(
+          160deg,
+          rgba(255,255,255,.045),
+          rgba(255,255,255,.018)
+        );
+
+      transition:
+        .22s ease;
+    }
+
+    .card:hover {
+      transform:
+        translateY(-4px);
+
+      border-color:
+        var(--line-strong);
+
+      background:
+        var(--panel-hover);
+    }
+
+    .card-number {
+      margin-bottom:
+        45px;
+
+      color:
+        var(--muted-2);
+
+      font-size:
+        12px;
+
+      font-family:
+        monospace;
+    }
+
+    .card h3 {
+      margin:
+        0 0 11px;
+
+      font-size:
+        18px;
+
+      letter-spacing:
+        -.4px;
+    }
+
+    .card p {
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.8;
+
+      word-break:
+        keep-all;
+    }
+
+    /* Focus */
+
+    .focus-section {
+      padding-top:
+        50px;
+    }
+
+    .focus-box {
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        .92fr 1.08fr;
+
+      gap:
+        65px;
+
+      padding:
+        56px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        30px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(232,189,77,.065),
+          rgba(255,255,255,.025) 50%,
+          rgba(70,125,220,.035)
+        );
+    }
+
+    .focus-box::before {
+      content: "";
+
+      position:
+        absolute;
+
+      width:
+        330px;
+
+      height:
+        330px;
+
+      right:
+        -150px;
+
+      top:
+        -160px;
+
+      border-radius:
+        50%;
+
+      background:
+        rgba(232,189,77,.07);
+
+      filter:
+        blur(5px);
+    }
+
+    .focus-left h2 {
+      margin:
+        10px 0 18px;
+
+      font-size:
+        37px;
+
+      line-height:
+        1.2;
+
+      letter-spacing:
+        -1.5px;
+
+      word-break:
+        keep-all;
+    }
+
+    .focus-left p {
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        15px;
+
+      line-height:
+        1.9;
+
+      word-break:
+        keep-all;
+    }
+
+    .focus-list {
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      gap:
+        12px;
+
+      position:
+        relative;
+
+      z-index:
+        1;
+    }
+
+    .focus-item {
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      gap:
+        14px;
+
+      padding:
+        17px 18px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        15px;
+
+      background:
+        rgba(0,0,0,.13);
+    }
+
+    .check {
+      flex:
+        0 0 auto;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      width:
+        26px;
+
+      height:
+        26px;
+
+      margin-top:
+        1px;
+
+      border-radius:
+        8px;
+
+      background:
+        var(--accent-soft);
+
+      color:
+        var(--accent);
+
+      font-size:
+        13px;
+
+      font-weight:
+        bold;
+    }
+
+    .focus-item strong {
+      display:
+        block;
+
+      margin-bottom:
+        3px;
+
+      font-size:
+        14px;
+    }
+
+    .focus-item span {
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+    }
+
+    /* AI */
+
+    .ai-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        1.1fr .9fr;
+
+      gap:
+        18px;
+    }
+
+    .ai-main,
+    .ai-side {
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        var(--radius);
+
+      background:
+        var(--panel);
+    }
+
+    .ai-main {
+      padding:
+        36px;
+    }
+
+    .ai-main .big-text {
+      max-width:
+        650px;
+
+      margin:
+        0;
+
+      font-size:
+        25px;
+
+      line-height:
+        1.55;
+
+      letter-spacing:
+        -.7px;
+
+      word-break:
+        keep-all;
+    }
+
+    .ai-main .big-text em {
+      color:
+        #f0cf73;
+
+      font-style:
+        normal;
+    }
+
+    .ai-main .sub {
+      max-width:
+        620px;
+
+      margin:
+        22px 0 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.85;
+
+      word-break:
+        keep-all;
+    }
+
+    .ai-side {
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      justify-content:
+        space-between;
+
+      padding:
+        30px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(80,130,230,.07),
+          rgba(255,255,255,.025)
+        );
+    }
+
+    .ai-tag {
+      align-self:
+        flex-start;
+
+      padding:
+        6px 9px;
+
+      border:
+        1px solid rgba(112,167,255,.25);
+
+      border-radius:
+        8px;
+
+      background:
+        rgba(112,167,255,.07);
+
+      color:
+        #9bc0ff;
+
+      font-size:
+        11px;
+
+      font-weight:
+        700;
+    }
+
+    .ai-side h3 {
+      margin:
+        44px 0 10px;
+
+      font-size:
+        22px;
+
+      letter-spacing:
+        -.6px;
+    }
+
+    .ai-side p {
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.8;
+    }
+
+    /* Process */
+
+    .process {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        var(--radius);
+
+      overflow:
+        hidden;
+
+      background:
+        rgba(255,255,255,.02);
+    }
+
+    .process-item {
+      padding:
+        26px 23px 28px;
+    }
+
+    .process-item + .process-item {
+      border-left:
+        1px solid var(--line);
+    }
+
+    .process-no {
+      margin-bottom:
+        38px;
+
+      color:
+        var(--accent);
+
+      font-size:
+        12px;
+
+      font-family:
+        monospace;
+    }
+
+    .process-item h3 {
+      margin:
+        0 0 8px;
+
+      font-size:
+        15px;
+    }
+
+    .process-item p {
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+
+      line-height:
+        1.7;
+    }
+
+    /* Company */
+
+    .company-section {
+      padding-bottom:
+        80px;
+    }
+
+    .company-box {
+      display:
+        grid;
+
+      grid-template-columns:
+        .75fr 1.25fr;
+
+      gap:
+        45px;
+
+      padding:
+        40px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        var(--radius);
+
+      background:
+        rgba(255,255,255,.025);
+    }
+
+    .company-title {
+      color:
+        var(--muted);
+
+      font-size:
+        13px;
+    }
+
+    .company-title strong {
+      display:
+        block;
+
+      margin-top:
+        8px;
+
+      color:
+        var(--text);
+
+      font-size:
+        25px;
+
+      letter-spacing:
+        -.7px;
+    }
+
+    .company-info {
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      column-gap:
+        35px;
+    }
+
+    .info-row {
+      padding:
+        13px 0;
+
+      border-bottom:
+        1px solid rgba(255,255,255,.07);
+
+      font-size:
+        13px;
+    }
+
+    .info-label {
+      display:
+        block;
+
+      margin-bottom:
+        4px;
+
+      color:
+        var(--muted-2);
+
+      font-size:
+        11px;
+    }
+
+    /* CTA */
+
+    .cta {
+      padding:
+        50px 0 105px;
+    }
+
+    .cta-box {
+      padding:
+        58px 30px;
+
+      text-align:
+        center;
+
+      border:
+        1px solid var(--accent-line);
+
+      border-radius:
+        28px;
+
+      background:
+        radial-gradient(
+          500px 230px at 50% 100%,
+          rgba(232,189,77,.11),
+          transparent 70%
+        ),
+        rgba(255,255,255,.025);
+    }
+
+    .cta-box h2 {
+      margin:
+        0 0 13px;
+
+      font-size:
+        34px;
+
+      letter-spacing:
+        -1.2px;
+    }
+
+    .cta-box p {
+      max-width:
+        580px;
+
+      margin:
+        0 auto 25px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.8;
+
+      word-break:
+        keep-all;
+    }
+
+    /* Footer */
+
+    footer {
+      padding:
+        26px 0 34px;
+
+      border-top:
+        1px solid var(--line);
+
+      color:
+        var(--muted-2);
+
+      font-size:
+        12px;
+    }
+
+    .footer-inner {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+    }
+
+    .footer-links {
+      display:
+        flex;
+
+      gap:
+        18px;
+    }
+
+    .footer-links a:hover {
+      color:
+        var(--muted);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .nav-links a:not(.nav-contact) {
+        display: none;
+      }
+
+      .hero {
+        padding:
+          80px 0 85px;
+      }
+
+      h1 {
+        letter-spacing:
+          -2px;
+      }
+
+      .value-strip {
+        grid-template-columns:
+          1fr;
+      }
+
+      .value-item + .value-item {
+        border-left:
+          0;
+
+        border-top:
+          1px solid var(--line);
+      }
+
+      .problem-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .focus-box {
+        grid-template-columns:
+          1fr;
+
+        gap:
+          38px;
+
+        padding:
+          38px 28px;
+      }
+
+      .ai-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .process {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+      .process-item + .process-item {
+        border-left:
+          none;
+      }
+
+      .process-item:nth-child(even) {
+        border-left:
+          1px solid var(--line);
+      }
+
+      .process-item:nth-child(n+3) {
+        border-top:
+          1px solid var(--line);
+      }
+
+      .company-box {
+        grid-template-columns:
+          1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width:
+          min(var(--max), calc(100% - 28px));
+      }
+
+      header {
+        height:
+          68px;
+      }
+
+      .hero {
+        padding:
+          62px 0 72px;
+      }
+
+      h1 {
+        font-size:
+          42px;
+
+        letter-spacing:
+          -2px;
+      }
+
+      .hero-desc {
+        font-size:
+          16px;
+      }
+
+      section {
+        padding:
+          75px 0;
+      }
+
+      .focus-box {
+        padding:
+          30px 21px;
+      }
+
+      .focus-left h2 {
+        font-size:
+          30px;
+      }
+
+      .ai-main,
+      .ai-side {
+        padding:
+          26px 22px;
+      }
+
+      .process {
+        grid-template-columns:
+          1fr;
+      }
+
+      .process-item:nth-child(even) {
+        border-left:
+          0;
+      }
+
+      .process-item + .process-item {
+        border-top:
+          1px solid var(--line);
+      }
+
+      .company-box {
+        padding:
+          29px 22px;
+      }
+
+      .company-info {
+        grid-template-columns:
+          1fr;
+      }
+
+      .footer-inner {
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="row" aria-label="header">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>appys</div>
+
+<header>
+  <div class="container nav">
+
+    <a
+      href="#top"
+      class="brand"
+      aria-label="appys"
+    >
+      <span
+        class="brand-mark"
+        aria-hidden="true"
+      ></span>
+
+      <span>appys</span>
+    </a>
+
+
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#technology">Technology</a>
+      <a href="#process">Process</a>
+
+      <a
+        href="mailto:appys.dev@gmail.com"
+        class="nav-contact"
+      >
+        Contact
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main id="top">
+
+  <!-- HERO -->
+
+  <div class="hero">
+
+    <div class="container">
+
+      <div class="hero-inner">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          B2B SOFTWARE DEVELOPMENT
+        </div>
+
+
+        <h1>
+          작은 회사의 업무를<br>
+          <span class="hero-highlight">
+            더 빠르고, 더 단순하게.
+          </span>
+        </h1>
+
+
+        <p class="hero-desc">
+          appys는 대기업을 위한 복잡하고 거대한 시스템보다,
+          소규모 기업이 실제 현장에서 편리하게 사용할 수 있는
+          B2B 업무 소프트웨어를 만듭니다.
+          AI 기술의 발전과 빠르게 변화하는 개발 환경을 활용해
+          필요한 기능을 신속하게 구현하고 반복 업무를 줄여
+          더 중요한 일에 집중할 수 있도록 돕습니다.
+        </p>
+
+
+        <div class="hero-actions">
+
+          <a
+            href="mailto:appys.dev@gmail.com"
+            class="btn btn-primary"
+          >
+            프로젝트 문의
+            <span>→</span>
+          </a>
+
+          <a
+            href="#about"
+            class="btn btn-secondary"
+          >
+            더 알아보기
+          </a>
+
+        </div>
+
+
+        <div class="value-strip">
+
+          <div class="value-item">
+            <div class="value-label">
+              SMALL BUSINESS
+            </div>
+
+            <div class="value-title">
+              소규모 기업 중심
+            </div>
+
+            <div class="value-desc">
+              규모가 작은 조직의 현실적인 업무 환경을 기준으로 설계합니다.
+            </div>
+          </div>
+
+
+          <div class="value-item">
+            <div class="value-label">
+              AI-ASSISTED
+            </div>
+
+            <div class="value-title">
+              빠른 개발과 개선
+            </div>
+
+            <div class="value-desc">
+              변화하는 AI 기술과 개발 도구를 적극 활용해 개발 속도를 높입니다.
+            </div>
+          </div>
+
+
+          <div class="value-item">
+            <div class="value-label">
+              PRACTICAL
+            </div>
+
+            <div class="value-title">
+              실제 업무에 최적화
+            </div>
+
+            <div class="value-desc">
+              보여주기 위한 기능보다 업무 시간을 줄이는 기능에 집중합니다.
+            </div>
+          </div>
+
+        </div>
+
       </div>
+
     </div>
-
-    <main class="panel">
-      <span class="badge"><span class="dot" aria-hidden="true"></span> 1인 앱 개발회사</span>
-      <h1>appys</h1>
-
-      <p class="lead">안녕하세요.
-개발회사 appys 입니다.
-
-수년간에 경험과 특별한 노하우로 안정적인 시스템을 바탕으로,
-기획부터 개발·운영까지 직접 책임지는 서비스를 만들고 있습니다.
-
-사용자 중심의 경험과 완성도 높은 품질을 최우선으로 생각합니다.
-
-감사합니다.</p>
-
-      <div class="actions">
-        <a class="btn primary" href="mailto:appys.dev@gmail.com">✉️ 문의하기</a>
-        <a class="btn" href="#info">🏢 회사정보</a>
-      </div>
-
-      <section class="grid" id="info">
-        <div class="box">
-          <h2>회사 정보</h2>
-          <p>애피스 대표이사 : 한용상 | 사업자 등록번호 : 812-18-02648
-사업장주소 : 경기도 남양주시 경춘로 460</p>
-        </div>
-        <div class="box">
-          <h2>연락처</h2>
-          <p>문의 : <a href="mailto:appys.dev@gmail.com">appys.dev@gmail.com</a></p>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      © <span id="y"></span> appys. All rights reserved.
-      · <a href="privacy.html">개인정보처리방침</a>
-    </footer>
 
   </div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+
+  <!-- ABOUT -->
+
+  <section
+    id="about"
+    class="problem-section"
+  >
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-kicker">
+          Why appys
+        </div>
+
+        <h2 class="section-title">
+          거대한 시스템보다<br>
+          우리 회사에 맞는 시스템.
+        </h2>
+
+        <p class="section-description">
+          많은 소규모 기업이 엑셀, 메신저, 수기 기록과
+          여러 프로그램을 조합해 업무를 처리합니다.
+          appys는 이런 불편함을 분석하고 실제 업무 흐름에 맞는
+          소프트웨어로 단순하게 연결합니다.
+        </p>
+
+      </div>
+
+
+      <div class="problem-grid">
+
+        <article class="card">
+
+          <div class="card-number">
+            01 / WORKFLOW
+          </div>
+
+          <h3>
+            반복되는 업무를 줄입니다
+          </h3>
+
+          <p>
+            매일 반복되는 입력, 확인, 정리,
+            엑셀 작업 등을 시스템화해
+            사람이 직접 처리해야 하는 업무를 줄입니다.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-number">
+            02 / FIT
+          </div>
+
+          <h3>
+            회사의 방식에 맞춥니다
+          </h3>
+
+          <p>
+            기존 프로그램에 업무를 억지로 맞추는 것이 아니라,
+            실제 사용하는 업무 방식과 흐름을 이해하고
+            필요한 기능을 중심으로 설계합니다.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <div class="card-number">
+            03 / TIME
+          </div>
+
+          <h3>
+            시간을 다시 돌려드립니다
+          </h3>
+
+          <p>
+            단순 반복 업무와 불필요한 확인 과정을 줄여
+            구성원이 더 중요한 업무에 시간을 사용할 수 있도록
+            효율적인 환경을 만듭니다.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SMALL BUSINESS FOCUS -->
+
+  <section class="focus-section">
+
+    <div class="container">
+
+      <div class="focus-box">
+
+        <div class="focus-left">
+
+          <div class="section-kicker">
+            Built for Small Business
+          </div>
+
+          <h2>
+            소규모 기업에 필요한 만큼,
+            제대로 만듭니다.
+          </h2>
+
+          <p>
+            대기업용 시스템은 많은 기능과 복잡한 절차를 전제로 합니다.
+            하지만 작은 조직에는 오히려 관리 부담이 될 수 있습니다.
+            appys는 소규모 기업의 인원, 비용, 업무 방식과
+            운영 환경을 고려해 꼭 필요한 기능을 중심으로
+            사용할수록 편한 시스템을 지향합니다.
+          </p>
+
+        </div>
+
+
+        <div class="focus-list">
+
+          <div class="focus-item">
+
+            <div class="check">✓</div>
+
+            <div>
+              <strong>불필요한 기능 최소화</strong>
+              <span>
+                실제로 사용하지 않는 복잡한 기능보다
+                필요한 업무에 집중합니다.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="focus-item">
+
+            <div class="check">✓</div>
+
+            <div>
+              <strong>기존 업무 흐름 분석</strong>
+              <span>
+                현재 사용하는 엑셀과 업무 프로세스를 바탕으로
+                시스템을 설계합니다.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="focus-item">
+
+            <div class="check">✓</div>
+
+            <div>
+              <strong>빠른 수정과 개선</strong>
+              <span>
+                실제 사용 중 발견되는 불편함을
+                빠르게 반영할 수 있는 구조를 지향합니다.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="focus-item">
+
+            <div class="check">✓</div>
+
+            <div>
+              <strong>업무 효율과 시간 절약</strong>
+              <span>
+                반복 작업과 수기 입력을 줄여
+                사람이 해야 할 일을 더 단순하게 만듭니다.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- AI -->
+
+  <section id="technology">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-kicker">
+          Technology
+        </div>
+
+        <h2 class="section-title">
+          AI 시대에 맞는<br>
+          더 빠른 개발 방식.
+        </h2>
+
+        <p class="section-description">
+          기술의 변화가 빨라진 만큼 소프트웨어 개발 방식도 달라지고 있습니다.
+          appys는 새로운 AI 기술과 개발 도구를 적극적으로 활용하며
+          아이디어를 실제 서비스로 구현하는 시간을 줄여갑니다.
+        </p>
+
+      </div>
+
+
+      <div class="ai-grid">
+
+        <div class="ai-main">
+
+          <p class="big-text">
+            AI는 사람을 대신하기 위한 목적이 아니라,
+            <em>더 빠르게 만들고 더 많이 검증하기 위한 도구</em>로 활용합니다.
+          </p>
+
+          <p class="sub">
+            반복적인 개발 작업을 효율화하고,
+            코드 작성·검토·분석·테스트 과정에서
+            최신 기술을 적극 활용합니다.
+            이를 통해 개발에 필요한 시간을 줄이고
+            실제 사용자의 요구사항과 서비스 완성도에
+            더 많은 시간을 투자하는 것을 목표로 합니다.
+          </p>
+
+        </div>
+
+
+        <div class="ai-side">
+
+          <span class="ai-tag">
+            AI-ASSISTED DEVELOPMENT
+          </span>
+
+          <div>
+
+            <h3>
+              빠르게 만들고,<br>
+              빠르게 개선합니다.
+            </h3>
+
+            <p>
+              처음부터 모든 것을 완벽하게 만드는 것보다
+              핵심 기능을 빠르게 구현하고 실제 업무에서 검증하며
+              지속적으로 개선하는 개발 방식을 추구합니다.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROCESS -->
+
+  <section id="process">
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div class="section-kicker">
+          Process
+        </div>
+
+        <h2 class="section-title">
+          업무를 이해하는 것부터 시작합니다.
+        </h2>
+
+        <p class="section-description">
+          개발 자체보다 중요한 것은 어떤 문제를 해결해야 하는지 정확하게 이해하는 것입니다.
+        </p>
+
+      </div>
+
+
+      <div class="process">
+
+        <div class="process-item">
+
+          <div class="process-no">
+            01
+          </div>
+
+          <h3>
+            업무 분석
+          </h3>
+
+          <p>
+            현재 업무 방식과 반복되는 문제를 확인합니다.
+          </p>
+
+        </div>
+
+
+        <div class="process-item">
+
+          <div class="process-no">
+            02
+          </div>
+
+          <h3>
+            구조 설계
+          </h3>
+
+          <p>
+            꼭 필요한 기능과 효율적인 업무 흐름을 설계합니다.
+          </p>
+
+        </div>
+
+
+        <div class="process-item">
+
+          <div class="process-no">
+            03
+          </div>
+
+          <h3>
+            빠른 개발
+          </h3>
+
+          <p>
+            최신 개발 도구를 활용해 핵심 기능부터 구현합니다.
+          </p>
+
+        </div>
+
+
+        <div class="process-item">
+
+          <div class="process-no">
+            04
+          </div>
+
+          <h3>
+            운영과 개선
+          </h3>
+
+          <p>
+            실제 사용 과정에서 발생하는 요구사항을 지속적으로 개선합니다.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- COMPANY -->
+
+  <section class="company-section">
+
+    <div class="container">
+
+      <div class="company-box">
+
+        <div class="company-title">
+
+          COMPANY
+
+          <strong>
+            appys
+          </strong>
+
+        </div>
+
+
+        <div class="company-info">
+
+          <div class="info-row">
+            <span class="info-label">COMPANY</span>
+            애피스 (appys)
+          </div>
+
+
+          <div class="info-row">
+            <span class="info-label">REPRESENTATIVE</span>
+            한용상
+          </div>
+
+
+          <div class="info-row">
+            <span class="info-label">FOUNDED</span>
+            2026
+          </div>
+
+
+          <div class="info-row">
+            <span class="info-label">BUSINESS</span>
+            B2B Software Development
+          </div>
+
+
+          <div class="info-row">
+            <span class="info-label">BUSINESS NUMBER</span>
+            812-18-02648
+          </div>
+
+
+          <div class="info-row">
+            <span class="info-label">CONTACT</span>
+
+            <a href="mailto:appys.dev@gmail.com">
+              appys.dev@gmail.com
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <div class="cta">
+
+    <div class="container">
+
+      <div class="cta-box">
+
+        <h2>
+          일하는 방식을 더 단순하게.
+        </h2>
+
+        <p>
+          반복되는 업무와 불필요한 작업을 소프트웨어로 줄이고,
+          작은 조직이 더 효율적으로 일할 수 있는 환경을 만듭니다.
+        </p>
+
+        <a
+          href="mailto:appys.dev@gmail.com"
+          class="btn btn-primary"
+        >
+          appys에 문의하기
+          <span>→</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div>
+      © <span id="year"></span> appys.
+      All rights reserved.
+    </div>
+
+    <div class="footer-links">
+
+      <a href="privacy.html">
+        개인정보처리방침
+      </a>
+
+      <a href="mailto:appys.dev@gmail.com">
+        Contact
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
 </body>
 </html>
